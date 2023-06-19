@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import Image from 'next/image';
 const formatTime = (time) => {
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60).toString().padStart(2, '0');
@@ -65,24 +65,24 @@ const Player = () => {
     }
   };
 
-const onVolumeChange = (e) => {
+  const onVolumeChange = (e) => {
     audioRef.current.volume = e.target.value;
-}
-const handleNextTrack = () => {
+  }
+  const handleNextTrack = () => {
     if (currentTrackIndex < tracks.length - 1) {
-    setIsPlaying(false);
-    audioRef.current.pause();
+      setIsPlaying(false);
+      audioRef.current.pause();
       setCurrentTrackIndex(currentTrackIndex + 1);
     } else {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setProgress(0);
       setIsPlaying(false);
-    
-  };
+
+    };
 
 
-}
+  }
   const handlePreviousTrack = () => {
     if (currentTrackIndex > 0) {
       setCurrentTrackIndex(currentTrackIndex - 1);
@@ -128,13 +128,16 @@ const handleNextTrack = () => {
 
       <p>{currentTrack.title} - {currentTrack.artist}</p>
       <audio ref={audioRef} src={currentTrack.url} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleTimeUpdate} onEnded={handleTrackEnd} />
-        <label>Volume</label>
+      <label>Volume</label>
       <input type="range" min="0" max="1" step="0.01" onChange={onVolumeChange} />
       <div>
-      <button onClick={handleNextTrack}>Next</button>
-      <button onClick={handlePreviousTrack}>Previous</button>
-      <button onClick={handleToggle}>{isPlaying ? 'Pause' : 'Play'}</button>
-      <button onClick={handleStop}>Stop</button>
+        <button onClick={handleNextTrack}><Image src="/images/forward.png" width={50} height={50} /></button>
+        <button onClick={handlePreviousTrack}> <Image src="/images/previous.png" width={50} height={50} />
+        </button>
+        <button onClick={handleToggle}>{isPlaying ? <Image src="/images/pause.png" width={50} height={50} />
+          : <Image src="/images/play.png" width={50} height={50} />}</button>
+        <button onClick={handleStop}> <Image src="/images/stop.png" width={50} height={50} />
+        </button>
       </div>
       <div>
         <span >{formatTime(currentTime)}</span> / <span>{formatTime(duration)}</span>

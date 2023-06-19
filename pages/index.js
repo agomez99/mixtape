@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'next/image';
 import Player from '../components/Player';
+import Boombox from '../components/Boombox';
 export default function Home() {
   const tracks = [
     { title: 'Track 1', url: 'https://res.cloudinary.com/dwq30zq8e/video/upload/v1637534672/Nujubes/Nujabes_-_Winter_Lane_Remix_y1cnlf.mp3' },
@@ -21,6 +22,7 @@ export default function Home() {
     <Container>
       <Row>
         <Col xs={12} md={8}>
+        {/* <Boombox  />*/}
         <Player 
         onReady={handleTimeUpdate}
         onPlay={handleTimeUpdate}
@@ -29,9 +31,12 @@ export default function Home() {
         onSeek={handleTimeUpdate}
         onSeeked={handleTimeUpdate}
         onVolumeChange={handleTimeUpdate}
-        onTimeUpdate={handleTimeUpdate}
-        
+        onTimeUpdate={handleTimeUpdate} 
+
          />
+
+
+
         </Col>
         <Col xs={6} md={4}>
         

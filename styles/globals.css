@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.boomscene{
+  font-family: sans-serif;
+  text-align: center;
+  height: 50vh;
+  width: 50vw;
+}
